@@ -1,14 +1,12 @@
 body {
-  /* diagonal gradient: top-left red, bottom-right blue */
   background: linear-gradient(to bottom right, rgb(82, 128, 255), rgb(240, 193, 255) , rgb(255, 76, 76));
 
-  /* make sure it covers the entire page */
-  min-height: 100vh;   /* 100% of viewport height */
-  margin: 0;           /* remove default margin */
+  min-height: 100vh;   
+  margin: 0;           
 }
 
-.transparent-table {
-  background-color: rgba(255, 255, 255, 0.2); /* white with 20% opacity */
-  backdrop-filter: blur(10px); /* makes background blurry */
+/* .transparent-table {
+  background-color: rgba(255, 255, 255, 0.2); 
+  backdrop-filter: blur(10px); 
   border-radius: 10px;
-}
+} */
