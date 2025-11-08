@@ -17,17 +17,17 @@
         <div class="row">
         <div class="col">
             <form class="text-light-emphasis">
-                <div id="div_id" >
+                <div class="p-1" id="div_id" >
                     <label class="text-start" for="pr_id">Product Code</label>
                     <br>
                     <input class="form-control" type="number" id="pr_id" placeholder="only numbers..." required/>
                 </div>
-                <div>
+                <div class="p-1">
                     <label for="pr_name">Product Name</label>
                     <br>
                     <input class="form-control" type="text" id="pr_name"  required/>
                 </div>
-                <div>
+                <div class="p-1">
                     <label for="pr_quantity">Product Quantity</label>
                     <br>
                     <input class="form-control" type="number" id="pr_quantity"  placeholder="only numbers..." required/>
@@ -35,24 +35,24 @@
                 <br>
                 <div class="container text-center">
                     <div class="row">
-                        <div class="col"><button class="btn btn-secondary" id="new_item" class="">Insert new</button></div>    
+                        <div class="col"><button type="submit" class="btn btn-secondary" id="new_item">Insert new</button></div>    
                         <div class="col"><button class="btn btn-secondary" id="edit_item">Edit item</button></div>    
                         <div class="col"><button class="btn btn-secondary" id="delete_item">Delete from LS</button></div>    
                     </div>
                 </div>
             </form>
             
-            <br>
-            <div id="table_1"></div>
+            <div class="container" id="table_1"></div>
         </div>
+
         <div class="col text-light-emphasis">
             <div class="text-center"><h4>Find Product by Code</h4>
             </div>
             <form >
-                <div id="find_div_id">
+                <div class="p-1" id="find_div_id">
                     <label for="find_pr_id">Product Code</label>
                     <br>
-                    <input class="form-control" type="number" id="find_pr_id" placeholder="only numbers..." required/>
+                    <input class="form-control" type="number" id="find_pr_id" placeholder="only numbers..."  required/>
                 </div>
                 <br>
                 <div class="text-center">
@@ -60,7 +60,7 @@
                 </div>
             </form>
             <br>
-            <div id="table_2"></div>
+            <div class="container" id="table_2"></div>
         </div>
         </div>
     </div>

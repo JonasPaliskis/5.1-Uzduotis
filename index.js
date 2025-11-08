@@ -51,18 +51,21 @@ function print_table(arr_of_obj, table_place_in_thml){
 
 
       const table = document.createElement('table');
-      table.classList="table table-bordered border-black bg-transparent";
+      table.classList="transparent-table w-100";
       const thead = document.createElement('thead');
+      thead.classList = "bg-transparent";
       const thead_tr = document.createElement('tr');
+      const tbody = document.createElement('tbody');
 
       const th_id       = document.createElement("th");
       const th_name     = document.createElement("th");
       const th_quantity = document.createElement("th");
 
       th_id.textContent       = "Product Code";
-      th_id.scope="col";
+      th_id.scoclape="col";
       th_name.textContent     = "Product Name";
       th_name.scope="col";
+      th_name.classList="col-6 text-center";
       th_quantity.textContent = "Product Quantity";
       th_name.scope="col";
 
@@ -74,6 +77,8 @@ function print_table(arr_of_obj, table_place_in_thml){
       thead_tr.appendChild(th_id );
       thead_tr.appendChild(th_name);
       thead_tr.appendChild(th_quantity);
+      table.appendChild(tbody);
+
       
       for (const product of arr_of_obj) {
 
@@ -90,7 +95,8 @@ function print_table(arr_of_obj, table_place_in_thml){
         td_name.textContent     = product.name;
         td_quantity.textContent = product.quantity;
 
-        table.appendChild(tr);
+        tbody.appendChild(tr);
+        // table.appendChild(tr);
         tr.appendChild(td_id);
         tr.appendChild(td_name);
         tr.appendChild(td_quantity);
@@ -114,7 +120,7 @@ function delete_element_html(error_place, error_type){
 
 //////////////////////////////////////
 
-// naujas objektas kuriamas
+// naujas productas kuriamas
 new_item.addEventListener("click", () => {
   event.preventDefault();
   products = JSON.parse(localStorage.getItem(products_name));
@@ -134,7 +140,7 @@ new_item.addEventListener("click", () => {
     delete_element_html("div_id", "p"); /// istrina jei yra rodoma klaida
     
     const id_error = document.createElement("p");
-    id_error.textContent = "*that id already exists";
+    id_error.textContent = "*that code already exists";
     id_error.id = "id_error";
     id_error.style.color = "red";
 
@@ -227,7 +233,7 @@ select_from_ls.addEventListener("click", () => {
     delete_element_html("find_div_id", "p"); /// istrina jei yra rodoma klaida
     
     const id_error = document.createElement("p");
-    id_error.textContent = "*that id doesn't exists";
+    id_error.textContent = "*that code doesn't exists";
     id_error.id = "id_";
     id_error.style.color = "red";
 
