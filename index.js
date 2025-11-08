@@ -197,6 +197,7 @@ delete_item.addEventListener("click", () => {
 const find_pr_id     = document.getElementById("find_pr_id");
 const select_from_ls = document.getElementById("select_from_ls");
 const table_2_place = "table_2";
+const pr_arr = [];
 
 
 select_from_ls.addEventListener("click", () => {
@@ -204,7 +205,6 @@ select_from_ls.addEventListener("click", () => {
   console.log("select_from_ls");
 
   products = JSON.parse(localStorage.getItem(products_name));
-  const pr_arr = [];
   
   if(is_id_in_array(find_pr_id.value, products)){  /// tikrina ar yra jau yra toks productas
 
