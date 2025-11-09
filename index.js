@@ -10,34 +10,31 @@ console.log("");
 // let div = document.createElement("div");
 // document.body.appendChild(div);
 
-const products_name = "products";
-let products      = JSON.parse(localStorage.getItem(products_name));
-console.log(products);
+const products_name = "products"; //LS vardas
+let   products      = JSON.parse(localStorage.getItem(products_name)); // gaunamas LS 
+// console.log(products);
 
+/// pirmos formos duomenys
 
 const pr_id       = document.getElementById('pr_id');
 const pr_name     = document.getElementById('pr_name');
 const pr_quantity = document.getElementById('pr_quantity');
 const pr_attributes = {};
 
-// const products      = [];
-// products.concat(JSON.parse(localStorage.getItem(products_name)));
-
+/// pirmos formos mugtukai
 const new_item =    document.getElementById("new_item");
 const edit_item =   document.getElementById("edit_item");
 const delete_item = document.getElementById("delete_item");
 
-const table_1_place = "table_1";
+const table_1_place = "table_1"; ///vieta kur rasomas stalas
 
-
-function to_string(arr_of_obj){
-  // console.log("to_string", products);
-  arr_of_obj.sort((a, b) => Number(a.id) - Number(b.id));
+function to_string(arr_of_obj){ /// productu sarasas
+  arr_of_obj.sort((a, b) => Number(a.id) - Number(b.id)); //surusiuoja pries isriontant
 
   return JSON.stringify(arr_of_obj);
 }
-
-function print_table(arr_of_obj, table_place_in_thml){
+//spausdinama lentele
+function print_table(arr_of_obj, table_place_in_thml){ //paimama duomenys ka spausdins ir kur spausdins viena 
       
       console.log(table_place_in_thml , "print_table ---------");
       console.log(table_place_in_thml, arr_of_obj);
@@ -102,15 +99,15 @@ function print_table(arr_of_obj, table_place_in_thml){
         tr.appendChild(td_quantity);
       }
 }
-print_table(products, table_1_place);
+print_table(products, table_1_place); // atspausdina lentele
 
-function is_id_in_array(pr_id, arr_of_obj){
+function is_id_in_array(pr_id, arr_of_obj){ // itkrina ar id yra masyve
   const is_id_in = arr_of_obj.some((pr) => Number(pr.id) === Number(pr_id));
-  // console.log("did found a reapeat", is_id_in);
   return is_id_in; 
 }
 
-function delete_element_html(error_place, error_type){
+//istrina elementa (pvz.: p) is nurodytos div vietos
+function delete_element_html(error_place, error_type){ 
   const id_error_place = document.getElementById(error_place);
   const p_id_error = id_error_place.querySelector(error_type);
     if(p_id_error){
@@ -211,7 +208,6 @@ edit_item.addEventListener("click", () => {
   pr_attributes.id = pr_id.value;
   pr_attributes.name = pr_name.value;
   pr_attributes.quantity = pr_quantity.value;
-
 
     delete_element_html("div_id", "p");
 
