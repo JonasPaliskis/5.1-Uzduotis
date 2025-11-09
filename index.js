@@ -118,6 +118,50 @@ function delete_element_html(error_place, error_type){
     }
 }
 
+///////////////////////////////////////
+
+const find_pr_id     = document.getElementById("find_pr_id");
+const select_from_ls = document.getElementById("select_from_ls");
+const table_2_place = "table_2";
+let pr_arr = [];
+
+
+select_from_ls.addEventListener("click", () => {
+  event.preventDefault();
+  console.log("select_from_ls");
+
+  products = JSON.parse(localStorage.getItem(products_name));
+  
+  if(is_id_in_array(find_pr_id.value, products)){  /// tikrina ar yra jau yra toks productas
+
+    delete_element_html("find_div_id", "p");
+
+    products = products.forEach( product => {
+      if(product.id === find_pr_id.value){
+        
+        // console.log("find: ",product);
+        pr_arr.push(product);
+      }
+    });    
+    print_table(pr_arr, table_2_place);
+
+  } else {
+
+    console.log("reapeat id");
+    const id_error_place = document.getElementById("find_div_id");
+
+    delete_element_html("find_div_id", "p"); /// istrina jei yra rodoma klaida
+    
+    const id_error = document.createElement("p");
+    id_error.textContent = "*that code doesn't exists";
+    id_error.id = "id_";
+    id_error.style.color = "red";
+
+    id_error_place.appendChild(id_error);
+    print_table(pr_arr, table_2_place);
+  }
+});
+
 //////////////////////////////////////
 
 // naujas productas kuriamas
@@ -173,11 +217,18 @@ edit_item.addEventListener("click", () => {
 
     products = products.filter(product => product.id !== pr_attributes.id);
 
+    if (pr_arr.length === 0) {
+      console.log("The product list is empty!");
+    } else {
+      pr_arr = pr_arr.filter(product => Number(product.id)!== Number(pr_attributes.id));
+      pr_arr.push(pr_attributes);
+    }
     console.log(pr_attributes);
     products.push(pr_attributes);
     localStorage.setItem(products_name, to_string(products));
     print_table(products, table_1_place);
-  
+    print_table(pr_arr, table_2_place);
+
 });
 
 delete_item.addEventListener("click", () => {
@@ -189,55 +240,23 @@ delete_item.addEventListener("click", () => {
 
 
     delete_element_html("div_id", "p");
-   
-    products = products.filter(product => product.id !== pr_attributes.id);
-
+    console.log("pr_array: ", pr_arr);
     console.log(pr_attributes);
+
+    
+
+    products = products.filter(product => product.id !== pr_attributes.id);
+    if (pr_arr.length === 0) {
+      console.log("The product list is empty!");
+    } else {
+      pr_arr = pr_arr.filter(product => Number(product.id) !== Number(pr_attributes.id));
+    }
     localStorage.setItem(products_name, to_string(products));
     print_table(products, table_1_place);
-  
+    print_table(pr_arr, table_2_place);
+
 });
 
 //////////////////////////////////////
 
-const find_pr_id     = document.getElementById("find_pr_id");
-const select_from_ls = document.getElementById("select_from_ls");
-const table_2_place = "table_2";
-const pr_arr = [];
 
-
-select_from_ls.addEventListener("click", () => {
-  event.preventDefault();
-  console.log("select_from_ls");
-
-  products = JSON.parse(localStorage.getItem(products_name));
-  
-  if(is_id_in_array(find_pr_id.value, products)){  /// tikrina ar yra jau yra toks productas
-
-    delete_element_html("find_div_id", "p");
-
-    products = products.forEach( product => {
-      if(product.id === find_pr_id.value){
-        
-        // console.log("find: ",product);
-        pr_arr.push(product);
-      }
-    });    
-    print_table(pr_arr, table_2_place);
-
-  } else {
-
-    console.log("reapeat id");
-    const id_error_place = document.getElementById("find_div_id");
-
-    delete_element_html("find_div_id", "p"); /// istrina jei yra rodoma klaida
-    
-    const id_error = document.createElement("p");
-    id_error.textContent = "*that code doesn't exists";
-    id_error.id = "id_";
-    id_error.style.color = "red";
-
-    id_error_place.appendChild(id_error);
-    print_table(pr_arr, table_2_place);
-  }
-});
